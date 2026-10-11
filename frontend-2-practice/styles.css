@@ -1,0 +1,713 @@
+/* Общие настройки страницы */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #1976e8;
+    --blue-hover: #0864d0;
+    --pale-blue: #e4f4ff;
+    --page-blue: #f4faff;
+    --ink: #182c48;
+    --muted: #7086a5;
+    --border: #d0e4fb;
+    --footer: #10294d;
+}
+
+html {
+    min-width: 320px;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+a,
+label.day,
+label.time-slot {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+.site-shell {
+    display: flex;
+    flex-direction: column;
+    width: min(1200px, calc(100% - 28px));
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+/* Верхняя навигация */
+.site-header {
+    min-height: 29px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 2px 20px 0 34px;
+    background: #ffffff;
+}
+
+.logo {
+    flex: 0 0 auto;
+    color: var(--blue);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(14px, 2.5vw, 32px);
+}
+
+.main-nav a {
+    color: #627b9d;
+    font-size: 10px;
+    line-height: 28px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.main-nav a:not(.nav-book-button):hover {
+    color: var(--blue);
+}
+
+.main-nav .nav-book-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    margin-top: 0;
+    padding: 0 10px;
+    border-radius: 11px;
+    color: #ffffff;
+    background: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.main-nav .nav-book-button:hover,
+.next-button:hover {
+    background: var(--blue-hover);
+}
+
+/* Основная голубая область */
+.booking-page {
+    position: relative;
+    flex: 1 0 auto;
+    min-height: 581px;
+    padding: 0 34px 4px;
+    background: var(--page-blue);
+}
+
+.booking-name {
+    width: 112px;
+    margin: 0;
+    padding-top: 0;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.25px;
+}
+
+/* Индикатор шагов записи */
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    width: 100%;
+    margin-top: 13px;
+}
+
+.progress-step {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.step-number {
+    display: inline-flex;
+    flex: 0 0 22px;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: var(--blue);
+    background: var(--pale-blue);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.step-label {
+    color: var(--muted);
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.progress-step--complete .step-number,
+.progress-step--active .step-number {
+    color: #ffffff;
+    background: var(--blue);
+}
+
+.progress-step--active .step-label {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.progress-step--future .step-number {
+    color: var(--blue);
+    background: #e5f5ff;
+}
+
+.step-line {
+    flex: 0 0 20px;
+    min-width: 7px;
+    max-width: 20px;
+    height: 2px;
+    background: var(--blue);
+    opacity: 0.85;
+}
+
+.step-line--future {
+    background: #d2e3f4;
+    opacity: 1;
+}
+
+/* Заголовок выбранного шага и карточки */
+.date-time-section {
+    margin-top: 23px;
+}
+
+.page-heading h2 {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+}
+
+.page-heading p {
+    margin: 1px 0 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 17px;
+    margin-top: 25px;
+}
+
+.calendar-card,
+.time-card {
+    min-width: 0;
+    height: 300px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: #ffffff;
+}
+
+.calendar-card {
+    padding: 10px 16px 16px;
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 28px;
+    margin-bottom: 11px;
+}
+
+.card-heading h3,
+.time-heading h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.month-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.month-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    padding: 0;
+    border: 0;
+    border-radius: 11px;
+    color: var(--blue);
+    background: var(--pale-blue);
+    font-size: 17px;
+    line-height: 1;
+    transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.month-arrow:hover {
+    background: #d1eaff;
+}
+
+.month-arrow:active {
+    transform: scale(0.96);
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    justify-items: center;
+}
+
+.calendar-weekdays {
+    align-items: center;
+    margin-bottom: 6px;
+    color: #627b9d;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.calendar-days {
+    grid-auto-rows: 32px;
+    row-gap: 11px;
+}
+
+.day {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 32px;
+    border-radius: 10px;
+    color: var(--ink);
+    font-size: 10px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.day > input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.day > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    pointer-events: none;
+    transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.day:not(.day--other-month):hover > span {
+    background: var(--pale-blue);
+}
+
+.day input:checked + span {
+    color: #ffffff;
+    background: var(--blue);
+    font-weight: 700;
+}
+
+.day input:focus-visible + span {
+    outline: 2px solid #74b5ff;
+    outline-offset: 2px;
+}
+
+.day--disabled,
+.day--disabled > input {
+    cursor: not-allowed;
+}
+
+.day--disabled > span,
+.day--disabled:hover > span {
+    color: #b8c6dc;
+    background: #eef2f7;
+}
+
+.booking-summary {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.next-button:disabled,
+.next-button:disabled:hover {
+    background: #b8c6dc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 680px) {
+    .form-actions {
+        flex-wrap: wrap;
+    }
+
+    .booking-summary {
+        order: -1;
+        flex-basis: 100%;
+    }
+}
+
+.day--other-month {
+    color: #b8d8f7;
+    background: #f4faff;
+    cursor: default;
+}
+
+/* Свободные интервалы */
+.time-card {
+    padding: 13px 15px;
+}
+
+.time-heading p {
+    margin: 2px 0 18px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 14px;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 10px;
+}
+
+.time-slot {
+    position: relative;
+    display: block;
+    min-width: 0;
+    height: 35px;
+    cursor: pointer;
+}
+
+.time-slot--busy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    border-radius: 11px;
+    color: #b8c6dc;
+    background: #eef2f7;
+    font-size: 12px;
+    text-decoration: line-through;
+    cursor: not-allowed;
+}
+
+.time-slot--busy:hover {
+    background: #eef2f7; /* hover не должен «оживлять» занятый слот */
+}
+
+.time-slot input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.time-slot span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    color: var(--blue);
+    background: var(--pale-blue);
+    font-size: 12px;
+    transition: color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.time-slot:hover span {
+    background: #d2eaff;
+}
+
+.time-slot input:checked + span {
+    color: #ffffff;
+    background: var(--blue);
+    font-weight: 700;
+}
+
+.time-slot input:focus-visible + span {
+    outline: 2px solid #74b5ff;
+    outline-offset: 2px;
+}
+
+/* Кнопки под карточками */
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.back-button,
+.next-button {
+    min-width: 86px;
+    height: 32px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 11px;
+    color: var(--blue);
+    background: var(--pale-blue);
+    font-size: 12px;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.back-button:hover {
+    color: #075bbd;
+    background: #d3ebff;
+}
+
+.next-button {
+    min-width: 120px;
+    color: #ffffff;
+    background: var(--blue);
+    font-weight: 700;
+}
+
+/* Нижний блок */
+.site-footer {
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: 1.7fr 0.9fr 0.9fr;
+    gap: 20px;
+    min-height: 81px;
+    padding: 27px 34px 10px;
+    color: #ffffff;
+    background: var(--footer);
+}
+
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.footer-brand p,
+.footer-column p {
+    margin: 0;
+    color: #c0cfe3;
+    font-size: 10px;
+    line-height: 14px;
+}
+
+.footer-column h3 {
+    margin: 0 0 6px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 14px;
+}
+
+/* Планшеты и телефоны */
+@media (max-width: 680px) {
+    .site-shell {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .site-header {
+        align-items: center;
+        min-height: 52px;
+        padding: 8px 16px;
+    }
+
+    .main-nav {
+        gap: 10px;
+    }
+
+    .main-nav a:not(.nav-book-button) {
+        display: none;
+    }
+
+    .booking-page {
+        min-height: 0;
+        padding: 16px 18px 20px;
+    }
+
+    .booking-name {
+        width: auto;
+        font-size: 21px;
+    }
+
+    .progress {
+        gap: 5px;
+        margin-top: 18px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+    }
+
+    .progress-step {
+        gap: 4px;
+    }
+
+    .step-number {
+        flex-basis: 22px;
+    }
+
+    .step-label {
+        font-size: 9px;
+    }
+
+    .step-line {
+        min-width: 8px;
+    }
+
+    .date-time-section {
+        margin-top: 23px;
+    }
+
+    .page-heading h2 {
+        font-size: 22px;
+    }
+
+    .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+    .calendar-card,
+.time-card {
+    min-width: 0;
+    height: 300px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: #ffffff;
+}
+
+    .calendar-card {
+        padding: 14px;
+    }
+
+    .calendar-days {
+        grid-auto-rows: 38px;
+        row-gap: 8px;
+    }
+
+    .day {
+        width: min(100%, 40px);
+        height: 34px;
+    }
+
+    .time-card {
+        min-height: 180px;
+        padding: 16px;
+    }
+
+    .time-slots {
+        gap: 10px;
+    }
+
+    /* Кнопки сразу под календарём и блоком времени */
+    .form-actions {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+    }
+
+    .site-footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 14px;
+        padding: 22px 18px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 380px) {
+    .site-header {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .booking-page {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .progress {
+        gap: 4px;
+    }
+
+    .step-label {
+        font-size: 8px;
+    }
+
+    .calendar-card {
+        padding: 10px;
+    }
+    
+
+    .day {
+        width: 33px;
+    }
+
+    .site-footer {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+}
+
+/* Месяцы с шестью неделями должны помещаться в карточке. */
+.calendar-card {
+    height: auto;
+    min-height: 300px;
+}
