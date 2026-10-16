@@ -1,0 +1,47 @@
+/* Общие настройки страницы */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #1976e8;
+    --blue-hover: #0864d0;
+    --pale-blue: #e4f4ff;
+    --page-blue: #f4faff;
+    --ink: #182c48;
+    --muted: #7086a5;
+    --border: #d0e4fb;
+    --footer: #10294d;
+}
+
+html {
+    min-width: 320px;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+a,
+label.day,
+label.time-slot {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
